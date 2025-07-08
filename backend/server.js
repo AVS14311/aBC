@@ -33,6 +33,16 @@ mongoose.connect(process.env.MONGODB_URI)
 app.use('/api/memories', memoryRoutes);
 app.use('/api/auth', authRoutes);
 
+// Auth routes
+app.post('/api/auth/login', (req, res) => {
+  // login logic
+  res.json({ message: "Login successful" });
+});
+
+app.get('/api/auth/check', (req, res) => {
+  res.json({ status: "ok" });
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
