@@ -15,6 +15,7 @@ app.use(cors({
   origin: process.env.FRONTEND_URL || true,
   credentials: true
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(checkInactivity);
