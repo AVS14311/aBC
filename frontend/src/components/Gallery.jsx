@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Gallery = ({ category }) => {
   const [memories, setMemories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +17,7 @@ const Gallery = ({ category }) => {
   useEffect(() => {
     const fetchMemories = async () => {
       try {
-        const { data } = await axios.get(`/api/memories/${category}`, {
+        const { data } = await axios.get(`${API_URL}/api/memories/${category}`, {
           withCredentials: true
         });
         setMemories(data);
@@ -30,7 +32,7 @@ const Gallery = ({ category }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/memories/${id}`, { withCredentials: true });
+      await axios.delete(`${API_URL}/api/memories/${id}`, { withCredentials: true });
       setMemories(memories.filter(m => m._id !== id));
       setSelected(null);
     } catch (err) {
@@ -40,7 +42,7 @@ const Gallery = ({ category }) => {
 
   const handleEdit = async () => {
     try {
-      await axios.put(`/api/memories/${selected._id}`, {
+      await axios.put(`${API_URL}/api/memories/${selected._id}`, {
         title: editTitle,
         description: editDesc
       }, { withCredentials: true });
