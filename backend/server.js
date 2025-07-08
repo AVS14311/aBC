@@ -6,11 +6,14 @@ const cors = require('cors');
 const path = require('path');
 const memoryRoutes = require('./routes/memoryRoutes');
 const authRoutes = require('./routes/authRoutes');
+
+
+
 const checkInactivity = require('./middlewares/inactivityTimer');
 
 const app = express();
 
-// Middleware
+ 
 app.use(cors({
   origin: process.env.FRONTEND_URL || true,
   credentials: true
