@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000', // Your backend URL
+        target: 'https://abc-production-6068.up.railway.app', // Railway backend URL
         changeOrigin: true,
         secure: false,
         ws: true,
