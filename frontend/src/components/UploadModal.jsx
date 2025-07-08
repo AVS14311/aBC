@@ -6,6 +6,8 @@ const UploadModal = ({ category, onClose }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -15,7 +17,7 @@ const UploadModal = ({ category, onClose }) => {
     formData.append('category', category);
 
     try {
-      await axios.post('/api/memories', formData, {
+      await axios.post(`${API_URL}/api/memories`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true
       });

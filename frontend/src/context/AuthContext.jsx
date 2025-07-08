@@ -8,11 +8,12 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get('/api/auth/check', { withCredentials: true });
+        await axios.get(`${API_URL}/api/auth/check`, { withCredentials: true });
         setIsAuthenticated(true);
       } catch {
         setIsAuthenticated(false);
@@ -27,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (password) => {
     try {
       await axios.post(
-        '/api/auth/login',
+        `${API_URL}/api/auth/login`,
         { password },
         { withCredentials: true }
       );
@@ -40,7 +41,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await axios.post('/api/auth/logout', {}, { withCredentials: true });
+    await axios.post(`${API_URL}/api/auth/logout`, {}, { withCredentials: true });
     setIsAuthenticated(false);
     navigate('/login');
   };

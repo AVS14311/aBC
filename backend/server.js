@@ -6,14 +6,12 @@ const cors = require('cors');
 const path = require('path');
 const memoryRoutes = require('./routes/memoryRoutes');
 const authRoutes = require('./routes/authRoutes');
-
-
+const API_URL = 'https://abc-production-6068.up.railway.app';
 
 const checkInactivity = require('./middlewares/inactivityTimer');
 
 const app = express();
 
- 
 app.use(cors({
   origin: process.env.FRONTEND_URL || true,
   credentials: true
